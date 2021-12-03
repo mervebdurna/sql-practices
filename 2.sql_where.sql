@@ -91,21 +91,26 @@ where City like '[ab] [np]%'  --Anacortes,Bobingy,Boise,Bonn,Boston,Bothell
 -- In a RIGHT OUTER JOIN, the right-hand table is the outer table and the left-hand table is the inner table.
 
 
---inner join : 
-select t1.c1, t2.c2
-    from t1, t2
-    where t1.c1 = t2.c2;
-
+--inner join  
 select t1.c1, t2.c2
     from t1 inner join t2
         on t1.c1 = t2.c2;
         
+--self join
+select t1.c1, t2.c2
+    from t1, t2
+    where t1.c1 = t2.c2;
+
+        
 --outer join :
+select t1.c1, t2.c2
+    from t1 outer join t2
+        on t1.c1 = t2.c2;
+       
+--self join
 select t.c1,t2.c2
 from t1,t2
 where t1.c1 = t2.c2(+)
 
-select t1.c1, t2.c2
-    from t1 outer join t2
-        on t1.c1 = t2.c2;
+
 
