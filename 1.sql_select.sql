@@ -34,14 +34,14 @@ from table_name
 -- case8: recoding empty and 'NA' values
 -- NOTE :COALESCE don't work with 'NA' and empty instead case when statement can be used
 select NaColumn,
-       case when NaColumn = 'NA' 
-       	    then 'NA_Missing' 
+       case 
+       	    when NaColumn = 'NA' then 'NA_Missing' 
 	    else NaColumn
-	    end as EncodedNaColumn,
-       case when EmptyColumn = '' 
-            then 'Empty_Missing' 
+       end as EncodedNaColumn,
+       case 
+       	    when EmptyColumn = '' then 'Empty_Missing' 
 	    else EmptyColumn
-	    end as EncodedEmptyColumn
+       end as EncodedEmptyColumn
 from table_name
 
 --NOTE : 
@@ -92,7 +92,7 @@ select UnitPrice, Quantity, Discount,
 from dbo.[OrderDetails]
 
 select floor (123.78) as FloorPositiveNumber, 
-       floor (-123.78) as FloorNegati veNumber, 
+       floor (-123.78) as FloorNegativeNumber, 
        ceiling (123.78) as CeilingPositiveNumber, 
        ceiling (-123.78) as CeilingNegativeNumber
 --source : https://www.sqlpedia.pl/funkcje-matematyczne-w-sql/
