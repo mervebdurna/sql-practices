@@ -19,20 +19,23 @@
 
 --case 1 : using between as a logical operator
 
-SELECT SalesOrderNumber, OrderDate, TotalDue
-FROM Sales.SalesOrderHeader
-WHERE TotalDue> = 870 AND TotalDue <= 1000
-And OrderDate> = '2002-01-01' AND OrderDate <= '2002-06-30'
+select SalesOrderNumber, OrderDate, TotalDue
+from Sales.SalesOrderHeader
+where TotalDue> = 870 and TotalDue <= 1000
+and OrderDate> = '2002-01-01' and OrderDate <= '2002-06-30'
 
-SELECT SalesOrderNumber, OrderDate, TotalDue
-FROM Sales.SalesOrderHeader
-WHERE TotalDue BETWEEN 870 AND 1000
-and OrderDate BETWEEN '2002-01-01' AND'2002-06-30 '
+select SalesOrderNumber, OrderDate, TotalDue
+from Sales.SalesOrderHeader
+where  TotalDue between 870 
+    and 1000
+    and OrderDate between '2002-01-01' and'2002-06-30 '
 
 -- case 2: Importance of Paranthesis
 select Name, Color, ListPrice
 from Production.Product
-WHERE Color = 'White' OR Color = 'Gray' and ListPrice> 9
+where Color = 'White'   
+    or Color = 'Gray'
+    and ListPrice> 9
 
 --The above query will return everything that is white. In addition, the OR operator will also allow you to select all gray items,
 --but with a price greater than 9. Since we have not explicitly specified how individual conditions should be treated, 
@@ -42,44 +45,46 @@ WHERE Color = 'White' OR Color = 'Gray' and ListPrice> 9
 
 select Name, Color, ListPrice
 from Production.Product
-WHERE (Color = 'White' OR Color = 'Gray') and ListPrice> 9
+where (Color = 'White' or Color = 'Gray') 
+    and ListPrice> 9
 
 -- case 3 : Filtering Character Values
 -- all records for which the value of the City column starts with "par"
-select distinct city
+select distinct City
 from Person.Address
-where City LIKE 'par%'
+where City like 'par%'
 
 -- records for which the value of the City column contains the string "par" (plus any number of characters before and after)
 select distinct city
 from Person.Address
-where City LIKE '% par%' 
+where City like '% par%' 
 
 --- all cities that start with any character,
 -- contain the sequence "par" in position 2-4 
 select distinct city
 from Person.Address
-where City LIKE '_par%'
+where City like '_par%'
 
 --Specifying a range of characters at the indicated position in square brackets []
 --The range can be continuous [az] or a list of possible [adg] characters. 
 --It can also specify the exclusion of specific characters - then we use the symbol ^. like : ring [td]
 select distinct city
 from Person.Address
-where City LIKE '% ring [td]%'  -- returns Springdale, Wamington
+where City like '% ring [td]%'  -- returns Springdale, Wamington
 
 select distinct city
 from Person.Address
-where City LIKE '% ring [^td]%' 
+where City like '% ring [^td]%' 
 
 --Scoping can be performed for several characters.
 --For example, the query below returns all items beginning with a or b and a second letter between n-p
 
 select distinct city
 from Person.Address
-where City LIKE '[ab] [np]%'  --Anacortes,Bobingy,Boise,Bonn,Boston,Bothell
+where City like '[ab] [np]%'  --Anacortes,Bobingy,Boise,Bonn,Boston,Bothell
 
--- case 4 : Usage of where instead of join , the following queries are equal.
+-- case 4 : Usage of where instead of join , 
+-- the following queries are equal.
 -- Outer joins can be specified by using either the (+) syntax in the WHERE clause or the OUTER JOIN keywords in the FROM clause. 
 -- Note : The result of an outer join contains a copy of all rows from one table. In this topic, the table whose rows are preserved is called the “outer” table, and the other table is called the “inner” table.
 -- In a LEFT OUTER JOIN, the left-hand table is the outer table and the right-hand table is the inner table.
