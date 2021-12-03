@@ -89,7 +89,7 @@ select 2 + 2 as Result
 
 select UnitPrice, Quantity, Discount, 
 	round((UnitPrice * Quantity * (1-Discount)) * 1.23, 2) as TotalBrutto
-from dbo.[Order Details]
+from dbo.[OrderDetails]
 
 select floor (123.78) as FloorPositiveNumber, 
        floor (-123.78) as FloorNegati veNumber, 
