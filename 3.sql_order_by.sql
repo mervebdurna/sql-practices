@@ -16,3 +16,26 @@ orderItem ::= { <column_alias> | <position> | <expr> } [ ASC | DESC ] [ NULLS { 
 --  goood source : https://www.sqlshack.com/sql-order-by-clause-overview-and-examples/
 
 -- OFFSET(to skip first n rows) & FETCH (to get m rows ) can be used with order by. 
+
+-- We can use case when with order by for custom sorting
+--source : https://stackoverflow.com/questions/19185792/order-a-column-by-low-medium-high
+order by case priority
+  when 'low' 1
+  when 'med' then 2
+  when 'high' then 3
+  
+  -- ORDER BY statement works after the select statement so we can use aliasses in order by clause.
+  
+  -- Order by can be used as a Random Ordering . But this randomness is always in some way conditioned, for example, by the physical storage of records (or the method of storing data in the cache)
+  select NEWID () as RandomValue, FirstName as Name, 
+	   LastName as Surname,
+	   PersonType
+from Person.Person
+order by 1
+
+- both queries return the same result. In the second, we sort by NEWID ()
+select FirstName as Name, 
+	   LastName as Surname,
+	   PersonType
+from Person.Person
+order by NEWID ()
