@@ -12,3 +12,7 @@ orderItem ::= { <column_alias> | <position> | <expr> } [ ASC | DESC ] [ NULLS { 
 --      If the sort order is DESC, NULLS are returned first; to force NULLS to be last, use NULLS LAST.
 -- * An ORDER BY inside a subquery or subclause applies only within that subquery or subclause.
 --  Sorting can be expensive. If you want the results of the outer query sorted, use an ORDER BY clause only at the top level of the query, and avoid using ORDER BY clauses in subqueries unless necessary.
+
+--  goood source : https://www.sqlshack.com/sql-order-by-clause-overview-and-examples/
+
+-- OFFSET(to skip first n rows) & FETCH (to get m rows ) can be used with order by. 
