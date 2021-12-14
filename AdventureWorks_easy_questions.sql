@@ -8,7 +8,7 @@ from Customer
 where CompanyName = 'Bike World'
 
 --Question 2 : 
-Show the CompanyName for all customers with an address in City 'Dallas'.
+--Show the CompanyName for all customers with an address in City 'Dallas'.
 
 select CompanyName,c.City
 from Customer as a 
@@ -20,9 +20,9 @@ where c.City = 'Dallas'
 
 
 --Question 3 : 
-How many items with ListPrice more than $1000 have been sold?
+--How many items with ListPrice more than $1000 have been sold?
 
-select count(1)
+select count(1) as SoldProductCount
 from Product
 where ListPrice > 1000
 
@@ -37,7 +37,7 @@ where a.SubTotal + a.TaxAmt +a.Freight > 100000
 
 --Question 5 : Find the number of left racing socks ('Racing Socks, L') ordered by CompanyName 'Riding Cycles'
 
-select count(1)
+select count(1) LeftSocksCount
 from Product as a
 inner join SalesOrderDetail as b
 on a.productID =b.ProductID
